@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+.formdesign
+{
+padding: 10px;
+font-size: 25px;
+}
+.formdesign input
+{
+padding: 10px;
+width: 50%;
+}
+.btn
+{
+padding: 5px;
+width: 10%;
+}
+.formerror
+{
+color: red;
+}
+</style>
+<title>Document</title>
+</head>
+<body>
+<h1>Form validation</h1>
+<form action="#" name="myform" onsubmit="return formvalidate()" method="post">
+<div class="formdesign" id="fname"><label for="">First name: <input type="text" name="fname"> <span class="formerror"></span>
+</label>
+</div>
+<div class="formdesign" id="lname"><label >Last name: <input type="text" name="lname"> <span class="formerror"></span></label>
+
+</div>
+<div class="formdesign" id="email"><label for="">Email: <input type="email" name="email"> <span class="formerror"></span></label>
+
+</div>
+<div class="formdesign" id="pass"><label for="">Password: <input type="password" name="pass"> <span class="formerror"></span>
+</label>
+</div>
+<div class="formdesign" id="cpass"><label for="">Conform Password: <input type="password" name="cpass"> <span class="formerror"></span>
+</label>
+</div>
+<div class="formdesign" id="add"><label for="">Address: <input type="text" name="add"> <span class="formerror"></span>
+</label>
+</div>
+<input type="submit" value="Submit" class="btn">
+</form>
+<script>
+function clearerror()
+{
+errors=document.getElementsByClassName('formerror');
+for(let x of errors)
+{
+x.innerHTML="";
+}
+}
+function seterror(id,error)
+{
+element=document.getElementById(id);
+element.getElementsByClassName('formerror')[0].innerHTML=error;
+}
+function formvalidate()
+{
+var valreturn=true;
+clearerror();
+var fname=document.forms['myform']['fname'].value;
+if(fname.length<6)
+{
+seterror("fname","**Your first name is too short");
+valreturn=false;
+}
+if(fname.length==0)
+{
+seterror("fname","**Your first name cannot be empty");
+valreturn=false;
+}
+var lname=document.forms['myform']['lname'].value;
+if(lname.length<6)
+{
+seterror("lname","**Your Last name is too short");
+valreturn=false;
+}
+if(lname.length==0)
+{
+seterror("lname","**Your last name cannot be empty");
+valreturn=false;
+}
+var email=document.forms['myform']['email'].value;
+if(email.length>15)
+{
+seterror("email","**Your email lenght is too long");
+valreturn=false;
+}
+var pass=document.forms['myform']['pass'].value;
+if(pass.length<6)
+{
+seterror("pass","**Your password is too short");
+valreturn=false;
+}
+var cpass=document.forms['myform']['cpass'].value;
+if(cpass!=pass)
+{
+seterror("cpass","**Your password is not matching");
+valreturn=false;
+}
+var add=document.forms['myform']['add'].value;
+if(add.length<6)
+{
+seterror("add","**Your length of address is too short");
+valreturn=false;
+}
+return valreturn;
+}
+</script>
+</body>
+</html>
+
